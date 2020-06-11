@@ -1,0 +1,77 @@
+/include/ "system-conf.dtsi"
+/ {
+    
+
+chosen {
+		bootargs = "console=ttyPS0,115200 earlycon clk_ignore_unused";
+		stdout-path = "serial0:115200n8";
+	};
+};
+
+&gem0{
+    status = "okay";
+    phy-handle = <&phy0>;
+    phy-mode = "rgmii-id";
+    
+    pinctrl-names = "default";
+    phy-reset-gpio = <&gpio0 28 0>;
+    phy-reset-active-low;
+	
+    xlnx,eth-mode = <0x1>;
+     mdio {
+        status = "okay";
+        #address-cells = <1>;
+        #size-cells = <0>;
+        phy0: phy@0{
+            compatible = "ethernet-phy-ieee802.3-c22";
+            device_type = "ethernet-phy";
+
+            reg = <0>;
+            ti,rx-internal-delay = <0x8>; 
+            ti,tx-internal-delay = <0xa>; 
+            ti,fifo-depth = <0x01>; 
+            ti,min-output-impedance;
+            ti,dp83867-rxctrl-strap-quirk;
+            status = "okay";
+        };
+    };
+};
+
+&clkc {
+	ps-clk-frequency = <33333333>;
+};
+&sdhci0 {
+	u-boot,dm-pre-reloc;
+};
+
+&uart1 {
+	u-boot,dm-pre-reloc;
+};
+&qspi {
+	#address-cells = <1>;
+	#size-cells = <0>;
+	flash0: flash@0 {
+		compatible = "n25q256a","micron,m25p80","jedec,spi-nor";
+		reg = <0x0>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		spi-max-frequency = <50000000>;
+		partition@0x00000000 {
+			label = "boot";
+			reg = <0x00000000 0x00500000>;
+		};
+		partition@0x00500000 {
+			label = "bootenv";
+			reg = <0x00500000 0x00020000>;
+		};
+		partition@0x00520000 {
+			label = "kernel";
+			reg = <0x00520000 0x00a80000>;
+		};
+		partition@0x00fa0000 {
+			label = "spare";
+			reg = <0x00fa0000 0x00000000>;
+		};
+	};
+};
+
