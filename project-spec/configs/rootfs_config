@@ -3946,6 +3946,7 @@ CONFIG_gpio-demo=y
 #
 # user packages 
 #
+CONFIG_openslp=y
 
 #
 # PetaLinux RootFS Settings
