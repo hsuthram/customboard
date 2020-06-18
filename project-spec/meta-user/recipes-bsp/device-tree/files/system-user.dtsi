@@ -74,4 +74,25 @@ chosen {
 		};
 	};
 };
+&i2c1 {
+	status = "okay";
+	clock-frequency = <400000>;
+	pinctrl-names = "default", "gpio";
+	scl-gpios = <&gpio0 12 0>;
+	sda-gpios = <&gpio0 13 0>;
+i2c@0{
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <0>;
+			gpio@22 {
+				compatible = "ti,tca6424";
+				reg = <0x22>;
+				gpio-controller;
+				#gpio-cells = <2>;
+			};
+		};
+};
+&i2c0 {
+	status = "okay";
+};
 
