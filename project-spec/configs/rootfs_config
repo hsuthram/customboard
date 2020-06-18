@@ -472,7 +472,7 @@ CONFIG_ethtool=y
 #
 # openssh 
 #
-# CONFIG_openssh is not set
+CONFIG_openssh=y
 # CONFIG_openssh-misc is not set
 # CONFIG_openssh-dbg is not set
 # CONFIG_openssh-sshd is not set
@@ -480,7 +480,7 @@ CONFIG_ethtool=y
 # CONFIG_openssh-ssh is not set
 # CONFIG_openssh-dev is not set
 # CONFIG_openssh-sftp is not set
-CONFIG_openssh-sftp-server=y
+# CONFIG_openssh-sftp-server is not set
 # CONFIG_openssh-scp is not set
 
 #
@@ -2563,7 +2563,7 @@ CONFIG_packagegroup-core-boot=y
 #
 # packagegroup-core-ssh-dropbear 
 #
-CONFIG_packagegroup-core-ssh-dropbear=y
+# CONFIG_packagegroup-core-ssh-dropbear is not set
 # CONFIG_packagegroup-core-ssh-dropbear-dbg is not set
 # CONFIG_packagegroup-core-ssh-dropbear-dev is not set
 
@@ -3941,6 +3941,7 @@ CONFIG_imagefeature-hwcodecs=y
 # apps 
 #
 CONFIG_gpio-demo=y
+CONFIG_mbsonar=y
 # CONFIG_peekpoke is not set
 
 #
