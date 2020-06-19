@@ -1,0 +1,9 @@
+0.6
+2019.2
+Nov  6 2019
+21:42:20
+/home/hasitha/workspace/Vivado/project_2/project_2.ip_user_files/bd/design_1/ip/design_1_proc_sys_reset_0_0/sim/design_1_proc_sys_reset_0_0.vhd,1591108031,vhdl,,,,design_1_proc_sys_reset_0_0,,,,,,,,
+/home/hasitha/workspace/Vivado/project_2/project_2.ip_user_files/bd/design_1/ip/design_1_processing_system7_0_0/sim/design_1_processing_system7_0_0.v,1591297442,verilog,,/home/hasitha/workspace/Vivado/project_2/project_2.ip_user_files/bd/design_1/sim/design_1.v,,design_1_processing_system7_0_0,,axi_vip_v1_1_6;processing_system7_vip_v1_0_8;xilinx_vip,../../../../project_2.srcs/sources_1/bd/design_1/ipshared/2d50/hdl;../../../../project_2.srcs/sources_1/bd/design_1/ipshared/ec67/hdl;/tools/Xilinx/Vivado/2019.2/data/xilinx_vip/include,,,,,
+/home/hasitha/workspace/Vivado/project_2/project_2.ip_user_files/bd/design_1/sim/design_1.v,1591297440,verilog,,/home/hasitha/workspace/Vivado/project_2/project_2.srcs/sources_1/bd/design_1/hdl/design_1_wrapper.v,,design_1,,axi_vip_v1_1_6;processing_system7_vip_v1_0_8;xilinx_vip,../../../../project_2.srcs/sources_1/bd/design_1/ipshared/2d50/hdl;../../../../project_2.srcs/sources_1/bd/design_1/ipshared/ec67/hdl;/tools/Xilinx/Vivado/2019.2/data/xilinx_vip/include,,,,,
+/home/hasitha/workspace/Vivado/project_2/project_2.sim/sim_1/behav/xsim/glbl.v,1573089660,verilog,,,,glbl,,axi_vip_v1_1_6;processing_system7_vip_v1_0_8;xilinx_vip,,,,,,
+/home/hasitha/workspace/Vivado/project_2/project_2.srcs/sources_1/bd/design_1/hdl/design_1_wrapper.v,1591297441,verilog,,,,design_1_wrapper,,axi_vip_v1_1_6;processing_system7_vip_v1_0_8;xilinx_vip,../../../../project_2.srcs/sources_1/bd/design_1/ipshared/2d50/hdl;../../../../project_2.srcs/sources_1/bd/design_1/ipshared/ec67/hdl;/tools/Xilinx/Vivado/2019.2/data/xilinx_vip/include,,,,,
