@@ -26,7 +26,7 @@ CONFIG_system-zynq=y
 #
 # base-files 
 #
-# CONFIG_base-files is not set
+CONFIG_base-files=y
 # CONFIG_base-files-dbg is not set
 # CONFIG_base-files-dev is not set
 
@@ -105,7 +105,7 @@ CONFIG_busybox=y
 #
 # e2fsprogs 
 #
-# CONFIG_e2fsprogs is not set
+CONFIG_e2fsprogs=y
 # CONFIG_e2fsprogs-resize2fs is not set
 # CONFIG_e2fsprogs-badblocks is not set
 # CONFIG_e2fsprogs-e2fsck is not set
@@ -115,7 +115,7 @@ CONFIG_busybox=y
 # CONFIG_e2fsprogs-dev is not set
 # CONFIG_e2fsprogs-tune2fs is not set
 # CONFIG_libe2p is not set
-# CONFIG_e2fsprogs-mke2fs is not set
+CONFIG_e2fsprogs-mke2fs=y
 # CONFIG_e2fsprogs-dbg is not set
 
 #
@@ -364,7 +364,7 @@ CONFIG_mtd-utils=y
 # CONFIG_util-linux-prlimit is not set
 # CONFIG_util-linux-umount is not set
 # CONFIG_util-linux-partx is not set
-# CONFIG_util-linux-mkfs is not set
+CONFIG_util-linux-mkfs=y
 # CONFIG_util-linux-readprofile is not set
 # CONFIG_util-linux-uuidgen is not set
 # CONFIG_util-linux-mount is not set
@@ -3931,8 +3931,8 @@ CONFIG_bridge-utils=y
 #
 # Image Features
 #
-CONFIG_imagefeature-ssh-server-dropbear=y
-# CONFIG_imagefeature-ssh-server-openssh is not set
+# CONFIG_imagefeature-ssh-server-dropbear is not set
+CONFIG_imagefeature-ssh-server-openssh=y
 CONFIG_imagefeature-hwcodecs=y
 # CONFIG_imagefeature-package-management is not set
 # CONFIG_imagefeature-debug-tweaks is not set
