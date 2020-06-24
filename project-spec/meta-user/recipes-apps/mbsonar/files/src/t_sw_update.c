@@ -20,10 +20,11 @@
 #include "service.h"
 
 /********************              DEFINES                   ******************/
-#define MEGA_LIVE_UPDATE_FILE_PATH "/home/root/"
-#define MEGA_LIVE_FILE             "mbupdate.mbz"
-#define SW_UPDATE_PORT             SERVICE_PORT_SOCKET_SERVER_BASE  //50304
-#define BUFF_LEN                   1024
+#define MEGA_LIVE_ROOT_PATH  "/usr/app/"
+#define MEGA_LIVE_UPDATE_DIR "mbupdate"
+#define MEGA_LIVE_FILE       "mbupdate.mbz"
+#define SW_UPDATE_PORT       SERVICE_PORT_SOCKET_SERVER_BASE  //50304
+#define BUFF_LEN             1024
 /********************         TYPE DEFINITIONS               ******************/
 typedef struct file_info
 {
@@ -73,7 +74,7 @@ PRIVATE void T_SW_UPDATE_vRecvUpdate(S32 s32Socket)
       printf("filename: %s\n", fileInfo.cFileName);
       printf("filesize: %d\n", fileInfo.u32FileSize);
       printf("checksum: %s\n", fileInfo.cCheckSum);
-      sprintf(cFileName, "%s%s", MEGA_LIVE_UPDATE_FILE_PATH, fileInfo.cFileName);
+      sprintf(cFileName, "%s%s", MEGA_LIVE_ROOT_PATH, fileInfo.cFileName);
       printf("full filename: %s\n", cFileName);
       fp = fopen(cFileName, "w+");
       s_s32BytesReceived = 0;
@@ -235,13 +236,23 @@ PRIVATE void T_SW_UPDATE_vVerifyAndDeploy(void)
    char cFileName[32];
    FILE *fp;
 
-   sprintf(cFileName, "%s%s", MEGA_LIVE_UPDATE_FILE_PATH, MEGA_LIVE_FILE);
+   sprintf(cFileName, "%s%s", MEGA_LIVE_ROOT_PATH, MEGA_LIVE_FILE);
    fp = fopen(cFileName, "r");
 
    if (fp)
    {
+      char cCmd[64];
+
       printf("received %s\n", cFileName);
       fclose(fp);
+      sprintf(cCmd, "tar xvf %s", cFileName);
+      printf("execute %s\n", cCmd);
+      system(cCmd);
+      sprintf(cCmd, "%s/%s/PreInstall.sh", MEGA_LIVE_ROOT_PATH, MEGA_LIVE_UPDATE_DIR);
+      printf("execute %s\n", cCmd);
+      system(cCmd);
+      printf("[%d]%s; update YSWR to 0\n", __LINE__, __FUNCTION__);
+      H_DATABASE_bUpdateValueS32(YSWR, 0);
    }
 }
 

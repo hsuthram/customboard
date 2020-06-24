@@ -623,7 +623,7 @@ PRIVATE void T_PING_vPerformPing(void)
       }
 
       //read the header file
-      sprintf(c_FileName, "/home/root/encdata/ba0h%d.bin", u32PingNum);
+      sprintf(c_FileName, "/usr/app/simdata/ba0h%d.bin", u32PingNum);
 //      printf("[%d]%s: %s\n", __LINE__, __FUNCTION__, c_FileName);
       fp = fopen(c_FileName, "rb");
 
@@ -641,7 +641,7 @@ PRIVATE void T_PING_vPerformPing(void)
 //	 printf("%d %d %d\n", apReturn[0]->s32nhf_t, apReturn[0]->s32nhf_s, apReturn[0]->u32Seed);
 
 	 //now read the ping data file
-         sprintf(c_FileName, "/home/root/encdata/ba0d%d.bin", u32PingNum);
+         sprintf(c_FileName, "/usr/app/simdata/ba0d%d.bin", u32PingNum);
 //         printf("[%d]%s: %s\n", __LINE__, __FUNCTION__, c_FileName);
          fp = fopen(c_FileName, "rb");
 
