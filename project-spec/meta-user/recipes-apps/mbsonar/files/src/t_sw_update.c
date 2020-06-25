@@ -38,6 +38,7 @@ PRIVATE S32 s_s32BytesReceived = 0;
 PRIVATE S32 s_s32ServerSocket = -1;
 PRIVATE S32 s_s32ConnectSocket = -1;
 /********************              FUNCTIONS                 ******************/
+#if 0
 /*******************************************************************************
  *
  *    Function: T_SW_UPDATE_vRecvUpdate
@@ -230,6 +231,7 @@ PRIVATE void T_SW_UPDATE_vStartServer(void)
       }
    }
 }
+#endif
 
 PRIVATE void T_SW_UPDATE_vVerifyAndDeploy(void)
 {
@@ -242,13 +244,29 @@ PRIVATE void T_SW_UPDATE_vVerifyAndDeploy(void)
    if (fp)
    {
       char cCmd[64];
+      int  oldLen = 0;
+      int  newLen = 0;
 
-      printf("received %s\n", cFileName);
+      sprintf(cCmd, "/bin/sync");
+      system(cCmd);
+      fseek(fp, 0, SEEK_END);
+      newLen = ftell(fp);
+
+      while (newLen != oldLen)
+      {
+         printf("old %d new %d\n", oldLen, newLen);
+	 sleep(5);
+	 oldLen = newLen;
+         fseek(fp, 0, SEEK_END);
+         newLen = ftell(fp);
+         printf("received %s, %d bytes\n", cFileName, newLen);
+      }
+
       fclose(fp);
       sprintf(cCmd, "tar xvf %s", cFileName);
       printf("execute %s\n", cCmd);
       system(cCmd);
-      sprintf(cCmd, "%s/%s/PreInstall.sh", MEGA_LIVE_ROOT_PATH, MEGA_LIVE_UPDATE_DIR);
+      sprintf(cCmd, "%s%s/PreInstall.sh", MEGA_LIVE_ROOT_PATH, MEGA_LIVE_UPDATE_DIR);
       printf("execute %s\n", cCmd);
       system(cCmd);
       printf("[%d]%s; update YSWR to 0\n", __LINE__, __FUNCTION__);
@@ -267,13 +285,13 @@ PRIVATE void T_SW_UPDATE_vHandleNewData(MESSAGE_NEW_DATA *pMsg)
          printf("[%d] current %d, new %d\n", __LINE__, s_s32SWUpdateState, pMsg->dbValue.s32Val);
 
 	 //expecting data but we got an error notification
-	 if (((s_s32SWUpdateState > 0) && (pMsg->dbValue.s32Val < 0)) ||
+/*	 if (((s_s32SWUpdateState > 0) && (pMsg->dbValue.s32Val < 0)) ||
             (pMsg->dbValue.s32Val == 4))
 	 {
             s_s32SWUpdateState  = pMsg->dbValue.s32Val;
-            T_SW_UPDATE_vStopServer();
+//            T_SW_UPDATE_vStopServer();
 	 }
-	 else if ((s_s32SWUpdateState == 0) && (pMsg->dbValue.s32Val == 1))  //new update available
+	 else*/ if ((s_s32SWUpdateState == 0) && (pMsg->dbValue.s32Val == 1))  //new update available
 	 {
             s_s32SWUpdateState  = pMsg->dbValue.s32Val;
 //            T_SW_UPDATE_vStartServer();

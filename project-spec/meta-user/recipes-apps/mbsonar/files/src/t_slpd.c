@@ -56,6 +56,7 @@ PRIVATE void T_SLPD_vRegisterService(void)
 
       //get version number
       H_DATABASE_bFetchU32(SVER, &u32Version);
+//      printf("[%d]%s: SVER %d\n", __LINE__, __FUNCTION__, u32Version);
 
       //make the serial string
       H_DATABASE_bFetchU32(SEDU, &u32Date);

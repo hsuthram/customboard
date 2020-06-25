@@ -34,6 +34,7 @@ GLOBAL int T_SYSTEM_vMain(void)
    }
 
    H_DATABASE_bUpdateValueU32(SVER, VERSION_NUMBER_TIMES_1000);  //version number * 1000
+//   printf("[%d]%s: SVER updated to %s\n", VERSION_NUMBER_TIMES_1000);
    T_SYSTEM_vSetupMailBoxes();
    L_TASK_Start((TASK)NVRAMTASK);
    L_TASK_Start((TASK)GMSGTASK);

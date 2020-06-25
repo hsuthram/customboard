@@ -373,7 +373,6 @@ GLOBAL void H_DATABASE_vSaveToFile(void)
    FILE       *fp;
 
    /* lock so we don't update while we're saving */
-//   printf("[%d]%s: lock RES_DATABASE\n", __LINE__, __FUNCTION__);
    L_MUTEX_LockWait(RES_DATABASE);
 
    //double check the file before we save, it could be corrupt and need to be deleted
@@ -410,9 +409,8 @@ GLOBAL void H_DATABASE_vSaveToFile(void)
    }
 
    /* unlock the database resource */
-//   printf("[%d]%s: unlock RES_DATABASE\n", __LINE__, __FUNCTION__);
    L_MUTEX_Unlock(RES_DATABASE);
-   H_DATABASE_vPrintContents(1);
+//   H_DATABASE_vPrintContents(1);
 }
 
 /******************************************************************************
@@ -553,7 +551,6 @@ GLOBAL BOOLEAN H_DATABASE_bUpdateValue(FOURCHARID fcid,
 
       /* Safe to unlock the database resource now */
       L_MUTEX_Unlock(RES_DATABASE);
-//      H_DATABASE_vPrintContents();
       return TRUE;
    }
    else

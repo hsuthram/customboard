@@ -290,8 +290,7 @@ PRIVATE void T_PING_vSetupNetworkInterface(void)
 
    if (!bRegistered)
    {
-      BOOLEAN bReturn = U_GMSG_bRegisterMailbox(M_PING, RES_PING, SEMA_GMSG_PING, s_PING_MsgMapInfo, SERVICE_PORT_HB_SONAR_BASE);
-      printf("[%d]%s: register mail box return %d\n", __LINE__, __FUNCTION__, bReturn);
+      U_GMSG_bRegisterMailbox(M_PING, RES_PING, SEMA_GMSG_PING, s_PING_MsgMapInfo, SERVICE_PORT_HB_SONAR_BASE);
    }
 
    T_PING_vSetMulticastIPAddress();
@@ -454,59 +453,6 @@ PRIVATE S32 T_PING_myPDSerializer(MB_PING_DESCRIPTOR *pd, void **ppvSerialized, 
    unsigned char *pusc = NULL;
 
    *pnSize = (int)(sizeof(MB_PING_DESCRIPTOR) + pd->u32NumberOfSamples);
-
-#if 0
-   {
-      int i;
-
-      printf("[%d]%s: beginning\n", __LINE__, __FUNCTION__);
-
-      for (i = 0; i < 32; i++)
-      {
-         printf("%02X ", pd->pu8RawSonarData[i]);
-      }
-
-      printf("...\n");
-
-      for (i = 128 * 376 - 32; i < 128 * 376; i++)
-      {
-         printf("%02X ", pd->pu8RawSonarData[i]);
-      }
-
-      printf("\n");
-      printf("[%d]%s: hf_t\n", __LINE__, __FUNCTION__);
-
-      for (i = 128 * 376; i < 128 * 376 + 32 ; i++)
-      {
-         printf("%02X ", pd->pu8RawSonarData[i]);
-      }
-
-      printf("...\n");
-
-      for (i = 128 * 376 + pd->s32nhf_t - 32; i < 128 * 376 + pd->s32nhf_t; i++)
-      {
-         printf("%02X ", pd->pu8RawSonarData[i]);
-      }
-
-      printf("\n");
-      printf("[%d]%s: hf_s\n", __LINE__, __FUNCTION__);
-
-      for (i = 128 * 376 + pd->s32nhf_t; i < 128 * 376 + pd->s32nhf_t + 32; i++)
-      {
-         printf("%02X ", pd->pu8RawSonarData[i]);
-      }
-
-      printf("...\n");
-
-      for (i = 128 * 376 + pd->s32nhf_t + pd->s32nhf_s - 32; i < 128 * 376 + pd->s32nhf_t + pd->s32nhf_s; i++)
-      {
-         printf("%02X ", pd->pu8RawSonarData[i]);
-      }
-
-      printf("\n");
-   }
-#endif
-
    pusc = (unsigned char *)malloc((U32)(*pnSize));  //gets freed by SUDPOUTTASK
 //   printf("[%d]%s: allocated %d bytes @ 0x%x\n", __LINE__, __FUNCTION__, *pnSize, pusc);
    *ppvSerialized = pusc;
@@ -519,20 +465,6 @@ PRIVATE S32 T_PING_myPDSerializer(MB_PING_DESCRIPTOR *pd, void **ppvSerialized, 
 
    memcpy(pusc, pd, sizeof(MB_PING_DESCRIPTOR));
    memcpy(pusc + sizeof(MB_PING_DESCRIPTOR), pd->pu8RawSonarData, pd->u32NumberOfSamples);
-
-#if 0
-   {
-      int i;
-
-      for (i = 0; i < sizeof(MB_PING_DESCRIPTOR) + pd->u32NumberOfSamples * 2 - 4; i++)
-      {
-         printf("%02X ", *(pusc + i));
-      }
-
-      printf("\n");
-   }
-#endif
-
    return 0;
 }
 
@@ -682,7 +614,7 @@ PRIVATE void T_PING_vPerformPing(void)
       }
  
       printf("\n");
-#endif
+ #endif
       snd_Payload->u32Num = 1;
       snd_Payload->u32Size = 112;
 
@@ -993,7 +925,6 @@ PRIVATE BOOLEAN T_PING_bIsOurClient(GMSG_ADDRESS *pAddress)
    return FALSE;
 }
 
-/* this is untested */
 PRIVATE void T_PING_vUpdateClients(FOURCHARID fcid, GMSG_ADDRESS *pOriginAddress)
 {
    printf("fcid %x(%c%c%c%c)\n", fcid, (U8)fcid, (U8)(fcid >> 8), (U8)(fcid >> 16), (U8)(fcid >> 24));

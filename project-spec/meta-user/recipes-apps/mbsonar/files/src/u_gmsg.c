@@ -102,7 +102,6 @@ GLOBAL BOOLEAN U_GMSG_bRegisterMailboxAll(MBOX Mailbox, RESOURCE ResLock, SEMA S
    MSG_GMSG_REGISTER *pMsgRegister = (MSG_GMSG_REGISTER*)malloc(sizeof(MSG_GMSG_REGISTER));
    BOOLEAN            bSuccess;
 
-   printf("[%d]%s: here\n", __LINE__, __FUNCTION__);
    pMsgRegister->header.Cmd   = CMD_ID_GMSG_REGISTER;
    pMsgRegister->Mailbox      = Mailbox;
    pMsgRegister->ResLock      = ResLock;
